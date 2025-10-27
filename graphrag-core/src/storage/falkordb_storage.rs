@@ -55,8 +55,7 @@ impl FalkorDBStorage {
         let url = format!("{}://{}{}:{}", scheme, auth, host, port);
 
         // Parse the connection info
-        let connection_info: FalkorConnectionInfo = url
-            .parse()
+        let connection_info = FalkorConnectionInfo::try_from(url.as_str())
             .map_err(|e| GraphRAGError::Storage {
                 message: format!("Failed to parse connection URL: {}", e),
             })?;
@@ -81,7 +80,7 @@ impl FalkorDBStorage {
 
     /// Store an entity in FalkorDB
     async fn store_entity_internal(&self, entity: &Entity) -> Result<String> {
-        let graph = self.graph.write().await;
+        let mut graph = self.graph.write().await;
 
         // Create Cypher query to create or merge entity node
         // Entity has: id, name, entity_type, confidence, mentions, embedding
@@ -137,7 +136,7 @@ impl FalkorDBStorage {
 
     /// Store a document in FalkorDB
     async fn store_document_internal(&self, document: &Document) -> Result<String> {
-        let graph = self.graph.write().await;
+        let mut graph = self.graph.write().await;
 
         let query = format!(
             "MERGE (d:Document {{id: '{}'}}) \
@@ -161,7 +160,7 @@ impl FalkorDBStorage {
 
     /// Store a text chunk in FalkorDB
     async fn store_chunk_internal(&self, chunk: &TextChunk) -> Result<String> {
-        let graph = self.graph.write().await;
+        let mut graph = self.graph.write().await;
 
         // TextChunk has: id, document_id, content, start_offset, end_offset, embedding, entities, metadata
         let query = format!(
@@ -192,7 +191,7 @@ impl FalkorDBStorage {
 
         let query = "MATCH (e:Entity) RETURN e.id";
 
-        let mut result = graph
+        let result = graph
             .query(query)
             .execute()
             .await
