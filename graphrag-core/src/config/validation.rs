@@ -415,10 +415,10 @@ impl Validatable for SetConfig {
         // Validate storage settings
         let storage = &self.storage;
         match storage.database_type.as_str() {
-            "memory" | "file" | "sqlite" | "postgresql" | "neo4j" => {},
+            "memory" | "file" | "sqlite" | "postgresql" | "neo4j" | "falkordb" => {},
             db_type => {
                 result.add_error(format!("Unknown database type: {}", db_type));
-                result.add_suggestion("Supported types: memory, file, sqlite, postgresql, neo4j".to_string());
+                result.add_suggestion("Supported types: memory, file, sqlite, postgresql, neo4j, falkordb".to_string());
             }
         }
 

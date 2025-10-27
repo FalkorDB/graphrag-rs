@@ -22,6 +22,7 @@ ureq = ["dep:ureq"]
 memory-storage = []
 persistent-storage = ["arrow", "parquet"]  # Apache Parquet persistence
 # lance-storage = ["lancedb"]  # LanceDB vector storage (disabled due to version conflict)
+falkordb-storage = ["falkordb", "async"]  # FalkorDB graph database storage
 
 # Retrieval methods
 basic-retrieval = []
@@ -168,6 +169,9 @@ tracing-subscriber = { workspace = true, optional = true }
 # LLM integrations
 ollama-rs = { workspace = true, optional = true }
 jsonfixer = { workspace = true }  # JSON repair for LLM output (always available for entity extraction)
+
+# Graph databases
+falkordb = { workspace = true, optional = true }
 
 # Caching dependencies
 moka = { workspace = true, optional = true }
