@@ -381,6 +381,7 @@ See [graphrag-core/EMBEDDINGS_CONFIG.md](graphrag-core/EMBEDDINGS_CONFIG.md) for
 - **LanceDB**: Embedded vector DB for edge deployments (Node.js/desktop only)
 - **pgvector**: PostgreSQL integration for existing infrastructure
 - **Neo4j**: Optional graph database for complex multi-hop queries (>100k entities)
+- **FalkorDB**: Fast graph database compatible with Redis protocol, optimized for graph operations
 
 #### WASM Browser
 - **Voy**: 75KB pure Rust vector search with k-d tree algorithm
@@ -579,6 +580,7 @@ main crate      → graphrag-core
 memory-storage = []                           # In-memory (development)
 persistent-storage = ["lancedb", "arrow"]     # LanceDB embedded vector DB ⚠️ Mutually exclusive with neural-embeddings
 redis-storage = ["redis"]                     # Redis for distributed caching
+falkordb-storage = ["falkordb", "async"]      # FalkorDB graph database storage
 
 # Processing features
 parallel-processing = []                      # Rayon parallelization

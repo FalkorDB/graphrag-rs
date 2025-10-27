@@ -308,6 +308,9 @@ pub struct StorageConfig {
 
     /// Neo4j configuration
     pub neo4j: Option<Neo4jConfig>,
+
+    /// FalkorDB configuration
+    pub falkordb: Option<FalkorDBConfig>,
 }
 
 /// PostgreSQL database configuration
@@ -340,6 +343,26 @@ pub struct Neo4jConfig {
     /// Enable encrypted connections
     #[serde(default)]
     pub encrypted: bool,
+}
+
+/// FalkorDB graph database configuration
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct FalkorDBConfig {
+    /// FalkorDB server host
+    pub host: String,
+    /// FalkorDB server port
+    #[serde(default = "default_falkordb_port")]
+    pub port: u16,
+    /// Username for authentication (optional)
+    pub username: Option<String>,
+    /// Password for authentication (optional)
+    pub password: Option<String>,
+    /// Enable TLS/SSL connections
+    #[serde(default)]
+    pub use_tls: bool,
+    /// Graph name to use
+    #[serde(default = "default_falkordb_graph")]
+    pub graph_name: String,
 }
 
 /// Model configuration for LLM and embeddings
@@ -1120,6 +1143,12 @@ fn default_resolution() -> f32 {
 fn default_min_community_size() -> usize {
     3
 }
+fn default_falkordb_port() -> u16 {
+    6379  // FalkorDB default port (same as Redis)
+}
+fn default_falkordb_graph() -> String {
+    "graphrag".to_string()  // Default graph name
+}
 fn default_database_type() -> String {
     "sqlite".to_string()
 }
@@ -1433,6 +1462,7 @@ impl Default for StorageConfig {
             enable_wal: default_true(),
             postgresql: None,
             neo4j: None,
+            falkordb: None,
         }
     }
 }

@@ -56,6 +56,9 @@ leptos_router = { version = "0.8" }
 qdrant-client = "1.11"
 redis = { version = "0.27", features = ["tokio-comp", "connection-manager"] }
 
+# Graph databases
+falkordb = { version = "0.1", features = ["tokio"] }
+
 # GPU acceleration
 burn = { version = "0.18", default-features = false }
 burn-wgpu = { version = "0.18", default-features = false }

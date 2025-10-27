@@ -3708,6 +3708,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "falkordb"
+version = "0.1.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "875b9cf9dd34c437cb2447f6bb26687fdf655cea85da449a23656f99fce649ca"
+dependencies = [
+ "parking_lot",
+ "redis 0.28.2",
+ "regex",
+ "strum 0.26.3",
+ "thiserror 2.0.17",
+ "tokio",
+]
+
+[[package]]
 name = "fancy-regex"
 version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4390,6 +4404,7 @@ dependencies = [
  "dashmap 5.5.3",
  "derive_more 0.99.20",
  "dirs 5.0.1",
+ "falkordb",
  "flate2",
  "futures",
  "getrandom 0.2.16",
@@ -4416,7 +4431,7 @@ dependencies = [
  "proptest",
  "rand 0.8.5",
  "rayon",
- "redis",
+ "redis 0.27.6",
  "regex",
  "serde",
  "serde-wasm-bindgen",
@@ -4465,7 +4480,7 @@ dependencies = [
  "ollama-rs",
  "parking_lot",
  "qdrant-client",
- "redis",
+ "redis 0.27.6",
  "serde",
  "serde_json",
  "thiserror 1.0.69",
@@ -7215,8 +7230,10 @@ version = "0.9.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2621685985a2ebf1c516881c026032ac7deafcda1a2c9b7850dc81e3dfcb64c1"
 dependencies = [
+ "backtrace",
  "cfg-if",
  "libc",
+ "petgraph 0.6.5",
  "redox_syscall",
  "smallvec",
  "windows-link 0.2.1",
@@ -8203,6 +8220,27 @@ dependencies = [
  "ryu",
  "sha1_smol",
  "socket2 0.5.10",
+ "tokio",
+ "tokio-util",
+ "url",
+]
+
+[[package]]
+name = "redis"
+version = "0.28.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e37ec3fd44bea2ec947ba6cc7634d7999a6590aca7c35827c250bc0de502bda6"
+dependencies = [
+ "arc-swap",
+ "bytes",
+ "combine",
+ "futures-util",
+ "itoa",
+ "num-bigint",
+ "percent-encoding",
+ "pin-project-lite",
+ "rand 0.8.5",
+ "ryu",
  "tokio",
  "tokio-util",
  "url",

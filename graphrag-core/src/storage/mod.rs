@@ -8,6 +8,13 @@ use crate::core::{Document, Entity, Result, TextChunk};
 use crate::core::{traits::Storage, GraphRAGError};
 use std::collections::HashMap;
 
+// FalkorDB storage backend
+#[cfg(feature = "falkordb-storage")]
+pub mod falkordb_storage;
+
+#[cfg(feature = "falkordb-storage")]
+pub use falkordb_storage::{FalkorDBStorage, FalkorDBStats};
+
 /// In-memory storage implementation for development and testing
 #[derive(Debug, Default, Clone)]
 pub struct MemoryStorage {

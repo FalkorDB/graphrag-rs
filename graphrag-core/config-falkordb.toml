@@ -1,0 +1,18 @@
+# FalkorDB Graph Database Configuration
+# Example configuration for using FalkorDB as a storage backend
+
+[storage]
+database_type = "falkordb"
+
+[storage.falkordb]
+host = "localhost"
+port = 6379
+graph_name = "graphrag"
+use_tls = false
+
+# Optional: uncomment for authenticated connections
+# username = "your_username"
+# password = "your_password"
+
+# For TLS/SSL connections, set use_tls = true
+# use_tls = true
